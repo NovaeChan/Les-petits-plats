@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Lato&display=swap');
+:root{
+    --header-color: #D04F4F;
+    --background-primary: #E7E7E7;
+    --text-color-primary: #000000;
+    --text-color-secondary: #FFFFFF;
+    --ingredient-color: #3282F7;
+    --devices-color: #68D9A4;
+    --utensils-color: #ED6454;
+    --background-recipe-image: #C7BEBE;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body{
+    padding: 0px 100px;
+}
+
+header{
+    padding: 42px;
+    flex-direction: column;
+    justify-content: center;
+}
+header h1{
+    color: var(--header-color);
+    font-size: 36px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+main{
+    font-family: 'Lato', sans-serif;
+}
+
+.recipe-form,
+.tags,
+.wrapper-recipe{
+    border-radius: 5px;
+}
+
+.recipe-form::placeholder,
+.wrapper-recipe{
+    font-size: 18px;
+}
+
+header,
+.tag-1,
+.dropdowns{
+    display: flex;
+    align-items: center;
+}
+
+/* Barre de recherche de recette */
+form{
+    position: relative;
+}
+
+.recipe-form{
+    width: 100%;
+    height: 69px;
+    background-color: var(--background-primary);
+    border: none;
+    padding: 23px;
+    background-image: url('../assets/images/icon-search.svg');
+    background-position: 98% 50%;
+    background-repeat: no-repeat;
+    font-size: 18px;
+}
+
+.search-icon{
+    position: absolute;
+    right: 1%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+}
+
+/* Tags */
+
+.tags{
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.tag-1{
+    width: 107px;
+    height: 37px;
+    border-radius: 5px;
+    justify-content: space-evenly;
+    background-color: var(--ingredient-color);
+    color: var(--text-color-secondary);
+}
+
+/* Dropdowns */
+
+.dropdowns{
+    justify-content: flex-start;
+    margin-top: 15px;
+    gap: 20px;
+}
+
+.filters{
+    width: 170px;
+    height: 69px;
+}
+
+.wrapper-drowpdown{
+    position: relative;
+    height: 69px;
+    width: 100%;
+    background: var(--ingredient-color);
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: 23px;
+    appearance: none;
+    cursor: pointer;
+}
+
+.wrapper-drowpdown button{
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: none;
+    background: none;
+    color:#FFFFFF;
+    font-size: 18px;
+    text-align: left;
+    padding: 23px;
+    cursor: pointer;
+}
+
+.wrapper-drowpdown svg{
+    position: absolute;
+    top: 50%;
+    right: 7%;
+    transform: translate(-50%, -50%);
+}
+
+.wrapper-devices{
+    background-color: var(--devices-color);
+}
+
+.wrapper-ustensils{
+    background-color: var(--utensils-color);
+}
