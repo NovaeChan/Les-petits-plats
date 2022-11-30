@@ -97,6 +97,10 @@ form{
     color: var(--text-color-secondary);
 }
 
+.tag-close-icon{
+    cursor: pointer;
+}
+
 /* Dropdowns */
 
 .dropdowns{
