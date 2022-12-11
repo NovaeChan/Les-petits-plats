@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Lato&family=Roboto&display=swap');
+
 :root{
     --header-color: #D04F4F;
     --background-primary: #E7E7E7;
@@ -164,6 +165,7 @@ form{
 /* Recipe card */
 .recipe-display{
     margin-top: 1.3rem;
+    margin-bottom: 1.3rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: stretch;
@@ -185,7 +187,7 @@ form{
 
 .card-desc{
     height: 50%;
-    padding: 20px;
+    padding: 20px 18px 20px 20px;
     background-color: var(--background-primary);
     font-size: 12px;
 }
@@ -199,6 +201,10 @@ form{
 
 .card-recipeName{
     font-size: 18px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 70%;
 }
 
 .card-time{
@@ -208,12 +214,23 @@ form{
 
 .card-ingredient-recipe{
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 12px;
+    gap: 25px;
 }
 
 .card-ingredient-recipe div {
-    width: 171px;
-    overflow: hidden;
+    width: 50%;
+}
+
+.card-ingredient-block{
+    display: flex;
+    flex-direction: column;
+    /* overflow: hidden; */
     white-space: nowrap;
-    text-overflow: ellipsis;
+}
+
+.card-description{
+    font-family: 'Roboto', sans-serif;
 }

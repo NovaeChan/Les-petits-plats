@@ -1,8 +1,7 @@
 function recipeFactory(data){
     const { id, name, serving, ingredients, time, description, appliance, ustensils } = data;
-
+    
     function getRecipeCard(){
-
         const card = document.createElement( 'section' );
         const cardBgImage = document.createElement( 'div' );
         const cardDescription = document.createElement( 'div' );
@@ -11,8 +10,7 @@ function recipeFactory(data){
         const cardTimeBlock = document.createElement( 'div' );
         const cardTimeImage = document.createElement( 'img' );
         const cardTimeDesc = document.createElement( 'p' );
-        const cardIngredientBlock = document.createElement( 'div' );
-        const cardIngredients = document.createElement( 'div' );
+        const cardIngredientsDescription = document.createElement( 'div' );
         const cardRecipeDesc = document.createElement( 'div' );
 
         card.classList.add('card');
@@ -23,10 +21,14 @@ function recipeFactory(data){
 
         cardTitle.classList.add('card-title');
 
-        cardIngredientBlock.classList.add('card-ingredient-recipe');
+        cardIngredientsDescription.classList.add('card-ingredient-recipe');
+
+        cardRecipeName.classList.add('card-recipeName');
+
+        cardRecipeDesc.classList.add('card-description');
+
 
         cardRecipeName.textContent = `${name}`;
-        cardRecipeName.classList.add('card-recipeName');
 
         cardTimeImage.setAttribute('src', './assets/images/icon-recipe-timer.svg');
         cardTimeDesc.textContent = `${time} min`;
@@ -38,24 +40,39 @@ function recipeFactory(data){
         cardTitle.appendChild(cardRecipeName);
         cardTitle.appendChild(cardTimeBlock);
 
-        //Creer fonction de recup d'ingredients
-        ingredients.forEach((ingredient) => {
-            console.log(ingredient);
-            cardIngredients.innerHTML += `${ingredient} <br>`;
-        })
-        
-        //Creer fonction couper le texte apres un certain nombre de caracteres
         cardRecipeDesc.textContent = `${description}`;
-        cardIngredientBlock.appendChild(cardIngredients);
-        cardIngredientBlock.appendChild(cardRecipeDesc);
-
+        if(description.length > 175){
+            cardRecipeDesc.textContent = `${description.slice(0, 175)}...`;
+        }
+        cardIngredientsDescription.appendChild(getIngredients(ingredients));
+        cardIngredientsDescription.appendChild(cardRecipeDesc);
+        
         cardDescription.appendChild(cardTitle);
-        cardDescription.appendChild(cardIngredientBlock);
+        cardDescription.appendChild(cardIngredientsDescription);
 
         card.appendChild(cardBgImage);
         card.appendChild(cardDescription);
 
         return card;
+    }
+
+    function getIngredients(ingredients){
+        const ingredientsBlock = document.createElement( 'div' );
+        ingredientsBlock.classList.add('card-ingredient-block');
+        ingredients.forEach(ingredient => {
+            if(!ingredient.quantity){
+                ingredientsBlock.innerHTML += `<p><b>${ingredient.ingredient}</b></p>`;
+            }
+            else{
+                if(ingredient.hasOwnProperty('unit')){
+                    ingredientsBlock.innerHTML += `<p><b>${ingredient.ingredient}:</b> ${ingredient.quantity}${ingredient.unit.slice(0, 9)}</p>`;
+                }
+                else{
+                    ingredientsBlock.innerHTML += `<p><b>${ingredient.ingredient}:</b> ${ingredient.quantity}</p>`;
+                }
+            }
+        });
+        return ingredientsBlock;
     }
 
     return { getRecipeCard };

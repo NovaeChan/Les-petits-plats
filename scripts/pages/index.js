@@ -1,5 +1,5 @@
-//On récupère les recettes
 const recipeDisplay = document.querySelector('.recipe-display');
+//On récupère les recettes
 async function getRecipes(){
     try {
         const response = await fetch('./data/recipes.json');
