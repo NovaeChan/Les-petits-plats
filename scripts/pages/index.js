@@ -1,4 +1,7 @@
 const recipeDisplay = document.querySelector('.recipe-display');
+const noRecipeFound = document.querySelector('.recipe-display-error');
+
+let recipes = [];
 //On récupère les recettes
 async function getRecipes(){
     try {
@@ -17,6 +20,8 @@ async function getRecipes(){
 }
 
 async function displayRecipes(recipes){
+    noRecipeFound.innerHTML = '';
+    recipeDisplay.innerHTML = '';
     recipes.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
         const recipeCard = recipeModel.getRecipeCard();
@@ -24,10 +29,17 @@ async function displayRecipes(recipes){
     });
 }
 
+function displayNoRecipes(){
+    recipeDisplay.innerHTML= '';
+    noRecipeFound.innerHTML = '<h2>Aucune recette correspondante à votre recherche</h2>';
+}
+
 
 //Initialisation au chargement de la page
 async function init(){
-    const recipes = await getRecipes();
+    recipes = await getRecipes();
     displayRecipes(recipes);
+    displayFilters(recipes);
 }
+
 init();

@@ -2,7 +2,7 @@ function recipeFactory(data){
     const { id, name, serving, ingredients, time, description, appliance, ustensils } = data;
     
     function getRecipeCard(){
-        const card = document.createElement( 'section' );
+        const card = document.createElement( 'article' );
         const cardBgImage = document.createElement( 'div' );
         const cardDescription = document.createElement( 'div' );
         const cardTitle = document.createElement( 'div' );
@@ -57,18 +57,18 @@ function recipeFactory(data){
     }
 
     function getIngredients(ingredients){
-        const ingredientsBlock = document.createElement( 'div' );
+        const ingredientsBlock = document.createElement( 'ul' );
         ingredientsBlock.classList.add('card-ingredient-block');
         ingredients.forEach(ingredient => {
             if(!ingredient.quantity){
-                ingredientsBlock.innerHTML += `<p><b>${ingredient.ingredient}</b></p>`;
+                ingredientsBlock.innerHTML += `<li><b>${ingredient.ingredient}</b></li>`;
             }
             else{
                 if(ingredient.hasOwnProperty('unit')){
-                    ingredientsBlock.innerHTML += `<p><b>${ingredient.ingredient}:</b> ${ingredient.quantity}${ingredient.unit.slice(0, 9)}</p>`;
+                    ingredientsBlock.innerHTML += `<li><b>${ingredient.ingredient}:</b> ${ingredient.quantity}${ingredient.unit.slice(0, 9)}</p>`;
                 }
                 else{
-                    ingredientsBlock.innerHTML += `<p><b>${ingredient.ingredient}:</b> ${ingredient.quantity}</p>`;
+                    ingredientsBlock.innerHTML += `<li><b>${ingredient.ingredient}:</b> ${ingredient.quantity}</p>`;
                 }
             }
         });
