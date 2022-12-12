@@ -20,6 +20,7 @@ async function getRecipes(){
 }
 
 async function displayRecipes(recipes){
+    noRecipeFound.style.display = "none";
     noRecipeFound.innerHTML = '';
     recipeDisplay.innerHTML = '';
     recipes.forEach((recipe) => {
@@ -30,6 +31,7 @@ async function displayRecipes(recipes){
 }
 
 function displayNoRecipes(){
+    noRecipeFound.style.display = "flex";
     recipeDisplay.innerHTML= '';
     noRecipeFound.innerHTML = '<h2>Aucune recette correspondante à votre recherche</h2>';
 }

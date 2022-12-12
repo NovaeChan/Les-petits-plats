@@ -22,6 +22,8 @@ function searchRecipesInput(inputValue) {
     );
     //S'il y a des recettes trouvées alors on les affiche sinon message d'erreur
     searchedRecipes.length > 0 ? displayRecipes(searchedRecipes) : displayNoRecipes();
+
+    //Faire en sorte que les menus dropdowns soient mis à jour
 }
 
 searchBar.addEventListener('input', (event) => {
