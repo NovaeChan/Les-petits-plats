@@ -35,6 +35,8 @@ header h1{
 }
 
 main{
+    width: 1240px;
+    margin: auto;
     font-family: 'Lato', sans-serif;
 }
 
@@ -112,20 +114,28 @@ form{
 /* Dropdowns */
 
 .dropdowns{
-    justify-content: flex-start;
-    margin-top: 15px;
-    gap: 20px;
-    width: 550px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-grow: 4;
+    gap: 2rem;
+    width: 666;
+}
+
+.filters{
+    width: auto;
+    max-width: 666px;
 }
 
 .wrapper-dropdown{
     position: relative;
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
     background: var(--ingredient-color);
     width: 170px;
     height: 69px;
     border-radius: 5px;
-    font-size: 18px;
     line-height: 23px;
     appearance: none;
     cursor: pointer;
@@ -157,11 +167,14 @@ form{
     top: 100%;
     left: 0;
     width: 100%;
-    
     display: none;
     border-radius: 0 0 5px 5px;
     list-style-type: none;
     padding-left: 10px;
+    padding-bottom : 16px;
+    width: 666px;
+    max-height: 275px;
+    overflow: scroll;
 }
 
 .wrapper-dropdown .dropdown-ingredients{
@@ -171,8 +184,8 @@ form{
 .wrapper-dropdown li{
     color: var(--text-color-secondary);
     padding: 10px 10px 10px 0px;
-    width: 150px;
     padding-left: 10px;
+    width: 100%;
 }
 
 .wrapper-dropdown .dropdown-hide{
@@ -181,10 +194,12 @@ form{
 
 .wrapper-dropdown-open{
     border-radius: 5px 5px 0px 0px;
+    width: 666px;
 }
 
 .wrapper-dropdown-open .dropdown{
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .wrapper-devices,

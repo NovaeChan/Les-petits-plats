@@ -2,6 +2,7 @@ const searchBar = document.getElementById('recipe-form');
 
 //Function rechercher ingredient, nom de recette, description
 function searchRecipesInput(inputValue) {
+    console.time();
     searchedRecipes = [];
     const regex = new RegExp(`${inputValue}`, "i");
     searchedRecipes = recipes.filter((recipe) => {
@@ -22,8 +23,9 @@ function searchRecipesInput(inputValue) {
     );
     //S'il y a des recettes trouvées alors on les affiche sinon message d'erreur
     searchedRecipes.length > 0 ? displayRecipes(searchedRecipes) : displayNoRecipes();
-
+    console.timeEnd();
     //Faire en sorte que les menus dropdowns soient mis à jour
+    displayFilters(searchedRecipes);
 }
 
 searchBar.addEventListener('input', (event) => {
