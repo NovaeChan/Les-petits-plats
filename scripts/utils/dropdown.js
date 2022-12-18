@@ -61,7 +61,6 @@ function displayFilters(recipes) {
     dropdownIngredients.innerHTML = '';
     dropdownDevices.innerHTML = '';
     dropdownUstensils.innerHTML = '';
-    console.log(recipes);
     recipes.forEach((recipe) => {
         const ingredients = recipe.ingredients;
         const devices = recipe.appliance;

@@ -9,6 +9,7 @@
     --devices-color: #68D9A4;
     --utensils-color: #ED6454;
     --background-recipe-image: #C7BEBE;
+    --dropdown-size-open: 666px;
 }
 
 *, *::before, *::after {
@@ -124,12 +125,12 @@ form{
     flex-wrap: nowrap;
     flex-grow: 4;
     gap: 2rem;
-    width: 666;
+    width: var(--dropdown-size-open);
 }
 
 .filters{
     width: auto;
-    max-width: 666px;
+    max-width: var(--dropdown-size-open);
 }
 
 .wrapper-dropdown{
@@ -196,13 +197,12 @@ form{
     position: absolute;
     top: 100%;
     left: 0;
-    /* width: 100%; */
     display: none;
     border-radius: 0 0 5px 5px;
     list-style-type: none;
     padding-left: 10px;
     padding-bottom : 16px;
-    width: 666px;
+    width: var(--dropdown-size-open);
     max-height: 350px;
     overflow: scroll;
 }
@@ -224,7 +224,7 @@ form{
 
 .wrapper-dropdown-open{
     border-radius: 5px 5px 0px 0px;
-    width: 666px;
+    width: var(--dropdown-size-open);
 }
 
 .wrapper-dropdown-open img{
