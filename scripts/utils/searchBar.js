@@ -33,5 +33,15 @@ searchBar.addEventListener('input', (event) => {
         const searchedItem = event.currentTarget.value.trim().toLowerCase();
         searchRecipesInput(searchedItem);
     }
+
+});
+
+searchBar.addEventListener('keyup', (event) => {
+    if(event.key == 'Backspace' || event.key == 'Delete'){
+        const searchedItem = event.currentTarget.value.trim().toLowerCase();
+        if( searchedItem.length < 3 ){
+            displayRecipes(recipes);
+        }
+    }
 })
 

@@ -196,14 +196,14 @@ form{
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
+    /* width: 100%; */
     display: none;
     border-radius: 0 0 5px 5px;
     list-style-type: none;
     padding-left: 10px;
     padding-bottom : 16px;
     width: 666px;
-    max-height: 275px;
+    max-height: 350px;
     overflow: scroll;
 }
 
@@ -213,7 +213,7 @@ form{
 
 .wrapper-dropdown li{
     color: var(--text-color-secondary);
-    padding: 10px 10px 10px 0px;
+    padding: 5px 10px 5px 0px;
     padding-left: 10px;
     width: 100%;
 }
