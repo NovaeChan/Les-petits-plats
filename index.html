@@ -22,20 +22,14 @@
         </form>
 
         <div class="tags">
-            <div class="tag-1">
-                <span>Coco</span>
-                <img src="./assets/images/icon-close-tag.svg" alt="close tag icon" class="tag-close-icon">
-            </div>
         </div>
 
         <div class="dropdowns">
             <div class="filters">
                 <div class="wrapper-dropdown wrapper-recipe">
                     <button>Ingrédients</button>
-                    <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
-                            fill="white" />
-                    </svg>
+                    <input type="text" name="ingredient" id="ingredient" class="dropdown-input" placeholder="Rechercher un ingredient">
+                    <img src="./assets/images/icon-dropdown.png" alt="Dropdown arrow">
                     <ul class="dropdown dropdown-ingredients">
                     </ul>
                 </div>
@@ -43,10 +37,8 @@
             <div class="filters">
                 <div class="wrapper-dropdown wrapper-devices">
                     <button>Appareils</button>
-                    <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
-                            fill="white" />
-                    </svg>
+                    <input type="text" name="device" id="device" class="dropdown-input" placeholder="Rechercher un appareil">
+                    <img src="./assets/images/icon-dropdown.png" alt="Dropdown arrow">
                     <ul class="dropdown dropdown-devices">
                     </ul>
                 </div>
@@ -54,10 +46,8 @@
             <div class="filters">
                 <div class="wrapper-dropdown wrapper-ustensils">
                     <button>Ustensiles</button>
-                    <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
-                            fill="white" />
-                    </svg>
+                    <input type="text" name="ustensils" id="ustensils" class="dropdown-input" placeholder="Rechercher un ustensile">
+                    <img src="./assets/images/icon-dropdown.png" alt="Dropdown arrow">
                     <ul class="dropdown dropdown-ustensils">
                     </ul>
                 </div>
@@ -68,6 +58,7 @@
             <!-- Affichage des différentes recettes -->
         </div>
     </main>
+    <script src="./scripts/utils/tags.js"></script>
     <script src="./scripts/factories/dropdown.js"></script>
     <script src="./scripts/utils/dropdown.js"></script>
     <script src="./scripts/pages/index.js"></script>

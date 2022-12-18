@@ -70,6 +70,7 @@ header,
 form{
     position: relative;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .recipe-form{
@@ -94,11 +95,16 @@ form{
 /* Tags */
 
 .tags{
+    display: none;
+    align-items: center;
+    gap: 1.5rem;
     margin-top: 25px;
     margin-bottom: 15px;
 }
 
-.tag-1{
+.tag{
+    display: flex;
+    align-items: center;
     width: 107px;
     height: 37px;
     border-radius: 5px;
@@ -131,7 +137,6 @@ form{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
     background: var(--ingredient-color);
     width: 170px;
     height: 69px;
@@ -139,6 +144,7 @@ form{
     line-height: 23px;
     appearance: none;
     cursor: pointer;
+    align-items: center;
 }
 
 .wrapper-dropdown button{
@@ -148,18 +154,42 @@ form{
     margin: 0;
     border: none;
     background: none;
-    color:#FFFFFF;
+    color:hsl(0, 0%, 100%);
     font-size: 18px;
     text-align: left;
     padding: 23px;
     cursor: pointer;
 }
 
-.wrapper-dropdown svg{
+.wrapper-dropdown .dropdown-input{
+    position: relative;
+    background-color: inherit;
+    color: var(--text-color-secondary);
+    display: none;
+    width: 75%;
+    height: 30px;
+    border: none;
+    text-align: left;
+    left: 19px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.wrapper-dropdown .dropdown-input::placeholder{
+    color: hsl(0, 0%, 85%);
+}
+
+.wrapper-dropdown .dropdown-input:focus{
+    outline: none;
+}
+
+.wrapper-dropdown img{
     position: absolute;
     top: 50%;
     right: 5%;
     transform: translate(-50%, -50%);
+    height: 10px;
+    width: 16px;
 }
 
 .wrapper-dropdown .dropdown {
@@ -195,6 +225,18 @@ form{
 .wrapper-dropdown-open{
     border-radius: 5px 5px 0px 0px;
     width: 666px;
+}
+
+.wrapper-dropdown-open img{
+    transform: rotate(180deg);
+}
+
+.wrapper-dropdown-open button{
+    display: none;
+}
+
+.wrapper-dropdown-open .dropdown-input{
+    display: block;
 }
 
 .wrapper-dropdown-open .dropdown{
