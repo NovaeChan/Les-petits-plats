@@ -7,22 +7,23 @@ const dropdownUstensils = document.querySelector('.dropdown-ustensils');
 const tags = document.querySelector( '.tags' );
 //Ajout des ecouteurs d'evenements sur les dropdowns
 
-function toggleDropdown(event) {
-    const parent = event.target.parentNode;
+function toggleDropdown(target) {
+    const parent = target.parentNode;
     parent.classList.toggle('wrapper-dropdown-open');
 }
 
-function clickedDropdownItem(event){
+function clickedDropdownItem(target){
+    console.log(target);
     const tag = document.createElement( 'div' );
     const nameTag = document.createElement( 'span' );
     const closeImg = document.createElement( 'img' );
 
-    nameTag.textContent = event.target.textContent;
+    nameTag.textContent = target.textContent;
     closeImg.setAttribute('src', './assets/images/icon-close-tag.svg');
     closeImg.classList.add('tag-close-icon');
 
     tag.classList.add('tag');
-    tag.classList.add('tag-ingredient');
+    tag.classList.add(typeOfItem(target));
 
     tag.appendChild(nameTag);
     tag.appendChild(closeImg);
@@ -39,13 +40,12 @@ function addListener(node){
         for(const child of node.children){
             if(child.tagName != 'UL' && child.tagName != 'INPUT'){
                 child.addEventListener('click', (event) => {
-                    toggleDropdown(event);
+                    toggleDropdown(event.target);
                 })
             }
             if(child.tagName == 'UL'){
                 child.addEventListener('click', (event) => {
-                    clickedDropdownItem(event);
-
+                    clickedDropdownItem(event.target);
                 })
             }
         }
@@ -77,6 +77,11 @@ function displayIngredientsFilter(ingredients) {
         const ingredientModel = dropDownFactory(ingredient, "ingredient");
         const ingredientLI = ingredientModel.getDropDown();
         if (ingredientLI) {
+            ingredientLI.dataset.type = 'ingredient';
+            ingredientLI.addEventListener('click', (event) => {
+                searchRecipesInput(event.target.textContent);
+                toggleDropdown(dropdownIngredients);
+            })
             dropdownIngredients.appendChild(ingredientLI);
         }
     })
@@ -86,16 +91,36 @@ function displayDevicesFilter(devices) {
     const deviceModel = dropDownFactory(devices, "device");
     const deviceLI = deviceModel.getDropDown();
     if (deviceLI) {
+        deviceLI.dataset.type = 'device';
+        deviceLI.addEventListener('click', (event) => {
+            searchRecipesInput(event.target.textContent);
+            toggleDropdown(dropdownDevices);
+        })
         dropdownDevices.appendChild(deviceLI);
     }
 }
-
+//Mettre les ustensiles dans un data set
 function displayUstensilsFilter(ustensils) {
     ustensils.forEach((ustensil) => {
         const ustensilModel = dropDownFactory(ustensil, "ustensil");
         const ustensilLI = ustensilModel.getDropDown();
         if (ustensilLI) {
+            ustensilLI.dataset.type = 'ustensil';
+            ustensilLI.addEventListener('click', (event) => {
+                searchRecipesInput(event.target.textContent);
+                toggleDropdown(dropdownUstensils);
+            })
             dropdownUstensils.appendChild(ustensilLI);
         }
     })
+}
+
+function typeOfItem(item){
+    if( item.dataset.type == 'ingredient' ){
+        return 'tag-ingredients';
+    }
+    if( item.dataset.type == 'device' ){
+        return 'tag-devices';
+    }
+    return 'tag-ustensils';
 }

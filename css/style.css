@@ -106,16 +106,34 @@ form{
 .tag{
     display: flex;
     align-items: center;
-    width: 107px;
+    /* width: 107px; */
     height: 37px;
     border-radius: 5px;
     justify-content: space-evenly;
     background-color: var(--ingredient-color);
     color: var(--text-color-secondary);
+    padding: 5px;
 }
 
 .tag-close-icon{
     cursor: pointer;
+}
+
+.tag span{
+    overflow: hidden;
+    padding: 5px;
+}
+
+.tag-ingredient{
+    background-color: var(--ingredient-color);
+}
+
+.tag-devices{
+    background-color: var(--devices-color);
+}
+
+.tag-ustensils{
+    background-color: var(--devices-color);
 }
 
 /* Dropdowns */
@@ -207,7 +225,8 @@ form{
     overflow: scroll;
 }
 
-.wrapper-dropdown .dropdown-ingredients{
+.wrapper-dropdown .dropdown-ingredients,
+.tag-ingredients{
     background: var(--ingredient-color);
 }
 
@@ -245,12 +264,14 @@ form{
 }
 
 .wrapper-devices,
-.wrapper-dropdown .dropdown-devices{
+.wrapper-dropdown .dropdown-devices,
+.tag-devices{
     background-color: var(--devices-color);
 }
 
 .wrapper-ustensils,
-.wrapper-dropdown .dropdown-ustensils{
+.wrapper-dropdown .dropdown-ustensils,
+.tag-ustensils{
     background-color: var(--utensils-color);
 }
 
