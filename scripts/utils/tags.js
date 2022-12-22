@@ -5,10 +5,7 @@ function closeTag(target){
     parent.style.display = 'none';
 
     removeSelectedTag(removedTag);
-    searchedRecipes = recipes;
-    selectedTags.forEach(tag => {
-        searchRecipesInput(tag, searchedRecipes);
-    });
+    getRecipeWithTags();
     console.timeEnd();
 }
 
@@ -17,4 +14,15 @@ function removeSelectedTag(tag){
     if( index > -1 ){
         selectedTags.splice(index, 1);
     }
+}
+
+function getRecipeWithTags(){
+    searchedRecipes = recipes;
+    if(selectedTags.length == 0){
+        displayFilters(recipes);
+        displayRecipes(recipes);
+    }
+    selectedTags.forEach(tag => {
+        searchRecipesInput(tag, searchedRecipes);
+    });
 }
