@@ -2,6 +2,8 @@ const recipeDisplay = document.querySelector('.recipe-display');
 const noRecipeFound = document.querySelector('.recipe-display-error');
 
 let recipes = [];
+let searchedRecipes = [];
+
 //On récupère les recettes
 async function getRecipes(){
     try {

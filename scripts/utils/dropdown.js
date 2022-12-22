@@ -5,15 +5,16 @@ const dropdownIngredients = document.querySelector('.dropdown-ingredients');
 const dropdownDevices = document.querySelector('.dropdown-devices');
 const dropdownUstensils = document.querySelector('.dropdown-ustensils');
 const tags = document.querySelector( '.tags' );
-//Ajout des ecouteurs d'evenements sur les dropdowns
 
+const selectedTags = [];
+
+//Ajout des ecouteurs d'evenements sur les dropdowns
 function toggleDropdown(target) {
     const parent = target.parentNode;
     parent.classList.toggle('wrapper-dropdown-open');
 }
 
 function clickedDropdownItem(target){
-    console.log(target);
     const tag = document.createElement( 'div' );
     const nameTag = document.createElement( 'span' );
     const closeImg = document.createElement( 'img' );
@@ -79,7 +80,8 @@ function displayIngredientsFilter(ingredients) {
         if (ingredientLI) {
             ingredientLI.dataset.type = 'ingredient';
             ingredientLI.addEventListener('click', (event) => {
-                searchRecipesInput(event.target.textContent);
+                selectedTags.push(event.target.textContent);
+                searchRecipesInput(event.target.textContent, searchedRecipes.length > 0 ? searchedRecipes : recipes);
                 toggleDropdown(dropdownIngredients);
             })
             dropdownIngredients.appendChild(ingredientLI);
@@ -93,7 +95,8 @@ function displayDevicesFilter(devices) {
     if (deviceLI) {
         deviceLI.dataset.type = 'device';
         deviceLI.addEventListener('click', (event) => {
-            searchRecipesInput(event.target.textContent);
+            selectedTags.push(event.target.textContent);
+            searchRecipesInput(event.target.textContent, searchedRecipes.length > 0 ? searchedRecipes : recipes);
             toggleDropdown(dropdownDevices);
         })
         dropdownDevices.appendChild(deviceLI);
@@ -107,7 +110,8 @@ function displayUstensilsFilter(ustensils) {
         if (ustensilLI) {
             ustensilLI.dataset.type = 'ustensil';
             ustensilLI.addEventListener('click', (event) => {
-                searchRecipesInput(event.target.textContent);
+                selectedTags.push(event.target.textContent);
+                searchRecipesInput(event.target.textContent, searchedRecipes.length > 0 ? searchedRecipes : recipes);
                 toggleDropdown(dropdownUstensils);
             })
             dropdownUstensils.appendChild(ustensilLI);

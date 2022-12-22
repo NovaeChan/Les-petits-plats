@@ -3,13 +3,9 @@ const searchBar = document.getElementById('recipe-form');
 //TODO : Sauvegarder le tableau filtré + les tags
 //Réfléchir à comment actualiser lors d'une suppression de tags
 
-let searchedRecipes = [];
 //Function rechercher ingredient, nom de recette, description
-function searchRecipesInput(inputValue) {
-    console.log('Avant filter');
-    console.log(searchedRecipes);
+function searchRecipesInput(inputValue, recipes) {
     // console.time();
-    searchedRecipes = [];
     const regex = new RegExp(`${inputValue}`, "i");
     //TODO : Faire une fonction equivalent à filter
     searchedRecipes = recipes.filter((recipe) => {
@@ -28,8 +24,6 @@ function searchRecipesInput(inputValue) {
         return matched;
     }
     );
-    console.log('Après filter');
-    console.log(searchedRecipes);
     //S'il y a des recettes trouvées alors on les affiche sinon message d'erreur
     searchedRecipes.length > 0 ? displayRecipes(searchedRecipes) : displayNoRecipes();
     // console.timeEnd();
@@ -40,7 +34,7 @@ function searchRecipesInput(inputValue) {
 searchBar.addEventListener('input', (event) => {
     if (event.currentTarget.value.length >= 3) {
         const searchedItem = event.currentTarget.value.trim().toLowerCase();
-        searchRecipesInput(searchedItem);
+        searchRecipesInput(searchedItem, recipes);
     }
 
 });
@@ -49,6 +43,7 @@ searchBar.addEventListener('keyup', (event) => {
     if(event.key == 'Backspace' || event.key == 'Delete'){
         const searchedItem = event.currentTarget.value.trim().toLowerCase();
         if( searchedItem.length < 3 ){
+            searchedRecipes = [];
             displayRecipes(recipes);
             displayFilters(recipes);
         }
