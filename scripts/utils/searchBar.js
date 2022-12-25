@@ -4,7 +4,7 @@ const searchBar = document.getElementById('recipe-form');
 //Réfléchir à comment actualiser lors d'une suppression de tags
 
 //Function rechercher ingredient, nom de recette, description
-function searchRecipesInput(inputValue, recipes) {
+function searchInput(inputValue, recipes) {
     // console.time();
     const regex = new RegExp(`${inputValue}`, "i");
     //TODO : Faire une fonction equivalent à filter
@@ -24,9 +24,14 @@ function searchRecipesInput(inputValue, recipes) {
         return matched;
     }
     );
+    // console.timeEnd();
+    return searchedRecipes;
+}
+
+function displaySearchInput(inputValue, recipes){
+    const searchedRecipes = searchInput(inputValue, recipes);
     //S'il y a des recettes trouvées alors on les affiche sinon message d'erreur
     searchedRecipes.length > 0 ? displayRecipes(searchedRecipes) : displayNoRecipes();
-    // console.timeEnd();
     //Faire en sorte que les menus dropdowns soient mis à jour
     displayFilters(searchedRecipes);
 }
@@ -34,7 +39,7 @@ function searchRecipesInput(inputValue, recipes) {
 searchBar.addEventListener('input', (event) => {
     if (event.currentTarget.value.length >= 3) {
         const searchedItem = event.currentTarget.value.trim().toLowerCase();
-        searchRecipesInput(searchedItem, recipes);
+        displaySearchInput(searchedItem, recipes);
     }
 
 });

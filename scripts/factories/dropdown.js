@@ -7,15 +7,24 @@ function dropDownFactory(data, dataType) {
     switch (dataType) {
         case "ingredient":
             list = dropdownIngredients.querySelectorAll('li');
-            value = data.ingredient;
+            value = data.ingredient ? data.ingredient : data;
+            if(isAlreadyPresent(value).length <= 0){
+                filterIngredients.push(value);
+            }
             break;
         case "device":
             list = dropdownDevices.querySelectorAll('li');
             value = data;
+            if(isAlreadyPresent(value).length <= 0){
+                filterDevices.push(value);
+            }
             break;
         case "ustensil":
             list = dropdownUstensils.querySelectorAll('li');
             value = data;
+            if(isAlreadyPresent(value).length <= 0){
+                filterUstensils.push(value);
+            }
             break;
         default:
             break;

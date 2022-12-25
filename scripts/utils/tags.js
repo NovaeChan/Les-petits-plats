@@ -23,6 +23,6 @@ function getRecipeWithTags(){
         displayRecipes(recipes);
     }
     selectedTags.forEach(tag => {
-        searchRecipesInput(tag, searchedRecipes);
+        displaySearchInput(tag, searchedRecipes);
     });
 }
