@@ -8,43 +8,53 @@ function dropDownFactory(data, dataType) {
         case "ingredient":
             list = dropdownIngredients.querySelectorAll('li');
             value = data.ingredient ? data.ingredient : data;
-            if(isAlreadyPresent(value).length <= 0){
+            if(isAlreadyPresentInArray(value, filterIngredients).length <= 0){
                 filterIngredients.push(value);
             }
+            // if(isAlreadyPresent(value).length <= 0){
+            //     filterIngredients.push(value);
+            //     console.log("array ingredients : ");
+            //     console.log(filterIngredients);
+            //     console.log("fin");
+            // } CACA GROS CACA
             break;
         case "device":
             list = dropdownDevices.querySelectorAll('li');
             value = data;
-            console.log(isAlreadyPresent(value));
-            if(isAlreadyPresent(value).length <= 0){
+            if(isAlreadyPresentInArray(value, filterDevices).length <= 0){
                 filterDevices.push(value);
             }
+            // if(isAlreadyPresent(value).length <= 0){
+            //     filterDevices.push(value);
+            //     console.log("array device : ");
+            //     console.log(filterDevices);
+            //     console.log("fin");
+            // }
             break;
         case "ustensil":
             list = dropdownUstensils.querySelectorAll('li');
             value = data;
-            if(isAlreadyPresent(value).length <= 0){
+            if(isAlreadyPresentInArray(value, filterUstensils).length <= 0){
                 filterUstensils.push(value);
             }
+            // if(isAlreadyPresent(value).length <= 0){
+            //     filterUstensils.push(value);
+            // }
             break;
         default:
             break;
     }
 
     function getDropDown() {
-        if(isAlreadyPresent(value).length <= 0){
+        if(isAlreadyPresentInList(value).length <= 0){
             const list = document.createElement('li');
             list.textContent = value;
             return list;
         }
     }
 
-    function isAlreadyPresent(value) {
-        console.log("Valeur : ");
-        console.log(value);
-        console.log("Fin de valeur");
+    function isAlreadyPresentInList(value) {
         dropdownList = Array.from(list);
-        console.log(dropdownList);
         const reg = new RegExp(`${value}`, "i");
         existingList = dropdownList.filter((item) => {
             if (reg.test(item.textContent)) {
@@ -53,9 +63,15 @@ function dropDownFactory(data, dataType) {
             return false;
         }
         );
-        
         return existingList;
     }
-
+    
+    function isAlreadyPresentInArray(value, array){
+        const reg = new RegExp(`${value}`, "i");
+        existingArray = array.filter((item) => {
+            return reg.test(item);
+        })
+        return existingArray
+    }
     return { getDropDown };
 }

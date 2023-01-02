@@ -33,7 +33,6 @@ function displayInputDevice(input, devices) {
 
 inputDevice.addEventListener("input", (event) => {
     if (event.currentTarget.value.length > 2) {
-      console.log(event.target.value);
         displayInputDevice(event.target.value, filterDevices);
     }
 });
