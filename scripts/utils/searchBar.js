@@ -5,7 +5,7 @@ const searchBar = document.getElementById('recipe-form');
 
 //Function rechercher ingredient, nom de recette, description
 function searchInput(inputValue, recipes) {
-    // console.time();
+    console.time();
     const regex = new RegExp(`${inputValue}`, "i");
     //TODO : Faire une fonction equivalent à filter
     searchedRecipes = recipes.filter((recipe) => {
@@ -21,11 +21,41 @@ function searchInput(inputValue, recipes) {
                 matched = true;
             }
         });
+        if(regex.test(recipe.ustensils)){
+            return true;
+        }
         return matched;
     }
     );
-    // console.timeEnd();
+    console.timeEnd();
+    console.log(searchedRecipes);
     return searchedRecipes;
+}
+//Tartelettes - Brownie - Crêpes - Fondant - Cookies - Mousse - Charlotte - Crème
+//Tartelettes - Brownie - Crêpes - Fondant - Cookies - Mousse - Charlotte - Crème 
+function searchInputBis(inputValue, recipes){
+    console.time();
+    const regex = new RegExp(inputValue, "i");
+    let filteredRecipes = [];
+    for(let i = 0; i < recipes.length; i++){
+        let recipe = recipes[i];
+        if(regex.test(recipe.name)){
+            filteredRecipes.push(recipe);
+        }
+        else if(regex.test(recipe.appliance)){
+            filteredRecipes.push(recipe);
+        }
+        else {
+            for(let i = 0; i < recipe.ingredients.length; i++){
+                if(regex.test(recipe.ingredients[i].ingredient)){
+                    filteredRecipes.push(recipe);
+                    break;
+                }
+            }
+        }
+    }
+    console.timeEnd();
+    return filteredRecipes;
 }
 
 function displaySearchInput(inputValue, recipes){
@@ -41,7 +71,6 @@ searchBar.addEventListener('input', (event) => {
         const searchedItem = event.currentTarget.value.trim().toLowerCase();
         displaySearchInput(searchedItem, recipes);
     }
-
 });
 
 searchBar.addEventListener('keyup', (event) => {

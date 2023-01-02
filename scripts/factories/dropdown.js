@@ -15,6 +15,7 @@ function dropDownFactory(data, dataType) {
         case "device":
             list = dropdownDevices.querySelectorAll('li');
             value = data;
+            console.log(isAlreadyPresent(value));
             if(isAlreadyPresent(value).length <= 0){
                 filterDevices.push(value);
             }
@@ -39,8 +40,11 @@ function dropDownFactory(data, dataType) {
     }
 
     function isAlreadyPresent(value) {
+        console.log("Valeur : ");
+        console.log(value);
+        console.log("Fin de valeur");
         dropdownList = Array.from(list);
-
+        console.log(dropdownList);
         const reg = new RegExp(`${value}`, "i");
         existingList = dropdownList.filter((item) => {
             if (reg.test(item.textContent)) {
@@ -49,6 +53,7 @@ function dropDownFactory(data, dataType) {
             return false;
         }
         );
+        
         return existingList;
     }
 

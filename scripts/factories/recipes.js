@@ -50,6 +50,7 @@ function recipeFactory(data){
         cardDescription.appendChild(cardTitle);
         cardDescription.appendChild(cardIngredientsDescription);
 
+        card.dataset.ustensils = `${ustensils}`;
         card.appendChild(cardBgImage);
         card.appendChild(cardDescription);
 
