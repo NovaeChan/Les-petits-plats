@@ -65,14 +65,10 @@ function searchInputFromUstensils(inputValue, recipes){
     const regex = new RegExp(`${inputValue}`, "i");
     //TODO : Faire une fonction equivalent à filter
     searchedRecipes = recipes.filter((recipe) => {
-        // if(regex.test(recipe.ustensils)){
-        //     return true;
-        // }
         return regex.test(recipe.ustensils);
     }
     );
     return searchedRecipes;
-
 }
 
 function displaySearchInputFromUstensils(inputValue, recipes){
@@ -81,6 +77,7 @@ function displaySearchInputFromUstensils(inputValue, recipes){
     displayFilters(searchedRecipes);
 }
 
+//Faire une deuxième fonction pour les dropdowns
 function displaySearchInput(inputValue, recipes){
     const searchedRecipes = searchInput(inputValue, recipes);
     //S'il y a des recettes trouvées alors on les affiche sinon message d'erreur

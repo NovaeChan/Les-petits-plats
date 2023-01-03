@@ -27,7 +27,6 @@ function recipeFactory(data){
 
         cardRecipeDesc.classList.add('card-description');
 
-
         cardRecipeName.textContent = `${name}`;
 
         cardTimeImage.setAttribute('src', './assets/images/icon-recipe-timer.svg');

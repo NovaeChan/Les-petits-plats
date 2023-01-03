@@ -11,12 +11,6 @@ function dropDownFactory(data, dataType) {
             if(isAlreadyPresentInArray(value, filterIngredients).length <= 0){
                 filterIngredients.push(value);
             }
-            // if(isAlreadyPresent(value).length <= 0){
-            //     filterIngredients.push(value);
-            //     console.log("array ingredients : ");
-            //     console.log(filterIngredients);
-            //     console.log("fin");
-            // } CACA GROS CACA
             break;
         case "device":
             list = dropdownDevices.querySelectorAll('li');
@@ -24,12 +18,6 @@ function dropDownFactory(data, dataType) {
             if(isAlreadyPresentInArray(value, filterDevices).length <= 0){
                 filterDevices.push(value);
             }
-            // if(isAlreadyPresent(value).length <= 0){
-            //     filterDevices.push(value);
-            //     console.log("array device : ");
-            //     console.log(filterDevices);
-            //     console.log("fin");
-            // }
             break;
         case "ustensil":
             list = dropdownUstensils.querySelectorAll('li');
@@ -37,9 +25,6 @@ function dropDownFactory(data, dataType) {
             if(isAlreadyPresentInArray(value, filterUstensils).length <= 0){
                 filterUstensils.push(value);
             }
-            // if(isAlreadyPresent(value).length <= 0){
-            //     filterUstensils.push(value);
-            // }
             break;
         default:
             break;
@@ -73,5 +58,6 @@ function dropDownFactory(data, dataType) {
         })
         return existingArray
     }
+
     return { getDropDown };
 }
