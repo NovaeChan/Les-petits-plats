@@ -4,62 +4,33 @@ const searchBar = document.getElementById('recipe-form');
 //Réfléchir à comment actualiser lors d'une suppression de tags
 
 //Function rechercher ingredient, nom de recette, description
-function searchInput(inputValue, recipes) {
+function searchInput(inputValue, recipes){
     console.time();
-    const regex = new RegExp(`${inputValue}`, "i");
-    //TODO : Faire une fonction equivalent à filter
-    searchedRecipes = recipes.filter((recipe) => {
-        let matched = false;
-        if (regex.test(recipe.name)) {
-            return true;
+    const regex = new RegExp(inputValue, "i");
+    let filteredRecipes = [];
+    for(let i = 0; i < recipes.length; i++){
+        let recipe = recipes[i];
+        if(regex.test(recipe.name)){
+            filteredRecipes.push(recipe);
         }
-        if (regex.test(recipe.description)) {
-            return true;
+        else if(regex.test(recipe.appliance)){
+            filteredRecipes.push(recipe);
         }
-        if(regex.test(recipe.appliance)){
-            return true;
+        else if(regex.text(recipe.description)){
+            filteredRecipes.push(recipe);
         }
-        recipe.ingredients.forEach(({ ingredient }) => {
-            if (regex.test(ingredient)) {
-                matched = true;
+        else {
+            for(let i = 0; i < recipe.ingredients.length; i++){
+                if(regex.test(recipe.ingredients[i].ingredient)){
+                    filteredRecipes.push(recipe);
+                    break;
+                }
             }
-        });
-        if(regex.test(recipe.ustensils)){
-            return true;
         }
-        return matched;
     }
-    );
     console.timeEnd();
-    console.log(searchedRecipes);
-    return searchedRecipes;
+    return filteredRecipes;
 }
-//Tartelettes - Brownie - Crêpes - Fondant - Cookies - Mousse - Charlotte - Crème
-//Tartelettes - Brownie - Crêpes - Fondant - Cookies - Mousse - Charlotte - Crème 
-// function searchInputBis(inputValue, recipes){
-//     console.time();
-//     const regex = new RegExp(inputValue, "i");
-//     let filteredRecipes = [];
-//     for(let i = 0; i < recipes.length; i++){
-//         let recipe = recipes[i];
-//         if(regex.test(recipe.name)){
-//             filteredRecipes.push(recipe);
-//         }
-//         else if(regex.test(recipe.appliance)){
-//             filteredRecipes.push(recipe);
-//         }
-//         else {
-//             for(let i = 0; i < recipe.ingredients.length; i++){
-//                 if(regex.test(recipe.ingredients[i].ingredient)){
-//                     filteredRecipes.push(recipe);
-//                     break;
-//                 }
-//             }
-//         }
-//     }
-//     console.timeEnd();
-//     return filteredRecipes;
-// }
 
 function searchInputFromUstensils(inputValue, recipes){
     const regex = new RegExp(`${inputValue}`, "i");
