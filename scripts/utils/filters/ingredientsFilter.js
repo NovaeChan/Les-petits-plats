@@ -23,6 +23,7 @@ function displayIngredientsFilter(ingredients) {
   });
 }
 
+//Supprime tous les elements dans le filtre ingredients et affiche les nouveaux résultats
 function displayInputIngredient(input, ingredients) {
   const filteredIngredients = searchDropdown(input, ingredients);
   if (filteredIngredients.length > 0) {

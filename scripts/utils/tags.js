@@ -1,12 +1,9 @@
 function closeTag(target){
-    console.time();
     const parent = target.parentNode;
     const removedTag = parent.querySelector('span').textContent;
     parent.style.display = 'none';
-
     removeSelectedTag(removedTag);
     getRecipeWithTags();
-    console.timeEnd();
 }
 
 function removeSelectedTag(tag){

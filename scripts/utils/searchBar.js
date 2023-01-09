@@ -7,40 +7,43 @@ const searchBar = document.getElementById('recipe-form');
 function searchInput(inputValue, recipes){
     console.time();
     const regex = new RegExp(inputValue, "i");
-
+    let filterItems = [];
     for(let i = 0; i < recipes.length; i++){
         let recipe = recipes[i];
-        if(regex.test(recipe.name) && !searchedRecipes.includes(recipe)){
-            searchedRecipes.push(recipe);
+        if(regex.test(recipe.name) && !filterItems.includes(recipe)){
+            filterItems.push(recipe);
             continue;
         }
-        if(regex.test(recipe.appliance) && !searchedRecipes.includes(recipe)){
-            searchedRecipes.push(recipe);
+        if(regex.test(recipe.appliance) && !filterItems.includes(recipe)){
+            filterItems.push(recipe);
             continue;
         }
-        if(regex.test(recipe.description) && !searchedRecipes.includes(recipe)){
-            searchedRecipes.push(recipe);
+        if(regex.test(recipe.description) && !filterItems.includes(recipe)){
+            filterItems.push(recipe);
             continue;
         }
         for(let i = 0; i < recipe.ingredients.length; i++){
-            if(regex.test(recipe.ingredients[i].ingredient) && !searchedRecipes.includes(recipe)){
-                searchedRecipes.push(recipe);
+            if(regex.test(recipe.ingredients[i].ingredient) && !filterItems.includes(recipe)){
+                filterItems.push(recipe);
                 break;
             }
         }
     }
+    searchedRecipes = filterItems;
     console.timeEnd();
-    console.log(searchedRecipes);
     return searchedRecipes;
 }
 
 function searchInputFromUstensils(inputValue, recipes){
+    console.log(inputValue);
     const regex = new RegExp(`${inputValue}`, "i");
-    //TODO : Faire une fonction equivalent à filter
-    searchedRecipes = recipes.filter((recipe) => {
-        return regex.test(recipe.ustensils);
+    let filterUstensil = [];
+    for(let i = 0; i < recipes.length; i++){
+        if(regex.test(recipes[i].ustensils) && !filterUstensil.includes(recipes[i])){
+            filterUstensil.push(recipes[i]);
+        }
     }
-    );
+    searchedRecipes = filterUstensil;
     return searchedRecipes;
 }
 

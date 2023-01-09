@@ -34,25 +34,8 @@ function displayInputUstensil(input, ustensils) {
     }
 }
 
-// function searchOnlyUstensils(inputValue, recipes) {
-//     console.log(inputValue);
-//     console.time();
-//     const regex = new RegExp(`${inputValue}`, "i");
-//     //TODO : Faire une fonction equivalent à filter
-//     searchedRecipes = recipes.filter((recipe) => {
-//         let matched = false;
-//         if (regex.test(recipe.ustensils)) {
-//             return true;
-//         }
-//     });
-//     console.timeEnd();
-//     console.log(searchedRecipes);
-//     return searchedRecipes;
-// }
-
 inputUstensil.addEventListener("input", (event) => {
     if (event.currentTarget.value.length > 2) {
-      console.log(filterUstensils);
         displayInputUstensil(event.target.value, filterUstensils);
     }
 });
