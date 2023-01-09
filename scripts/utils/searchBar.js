@@ -7,29 +7,31 @@ const searchBar = document.getElementById('recipe-form');
 function searchInput(inputValue, recipes){
     console.time();
     const regex = new RegExp(inputValue, "i");
-    let filteredRecipes = [];
+
     for(let i = 0; i < recipes.length; i++){
         let recipe = recipes[i];
-        if(regex.test(recipe.name)){
-            filteredRecipes.push(recipe);
+        if(regex.test(recipe.name) && !searchedRecipes.includes(recipe)){
+            searchedRecipes.push(recipe);
+            continue;
         }
-        else if(regex.test(recipe.appliance)){
-            filteredRecipes.push(recipe);
+        if(regex.test(recipe.appliance) && !searchedRecipes.includes(recipe)){
+            searchedRecipes.push(recipe);
+            continue;
         }
-        else if(regex.text(recipe.description)){
-            filteredRecipes.push(recipe);
+        if(regex.test(recipe.description) && !searchedRecipes.includes(recipe)){
+            searchedRecipes.push(recipe);
+            continue;
         }
-        else {
-            for(let i = 0; i < recipe.ingredients.length; i++){
-                if(regex.test(recipe.ingredients[i].ingredient)){
-                    filteredRecipes.push(recipe);
-                    break;
-                }
+        for(let i = 0; i < recipe.ingredients.length; i++){
+            if(regex.test(recipe.ingredients[i].ingredient) && !searchedRecipes.includes(recipe)){
+                searchedRecipes.push(recipe);
+                break;
             }
         }
     }
     console.timeEnd();
-    return filteredRecipes;
+    console.log(searchedRecipes);
+    return searchedRecipes;
 }
 
 function searchInputFromUstensils(inputValue, recipes){

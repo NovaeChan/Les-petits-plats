@@ -35,7 +35,6 @@ function displayInputIngredient(input, ingredients) {
 
 inputIngredient.addEventListener("input", (event) => {
   if (event.currentTarget.value.length > 2) {
-    console.log(filterIngredients);
     displayInputIngredient(event.target.value, filterIngredients);
   }
 });

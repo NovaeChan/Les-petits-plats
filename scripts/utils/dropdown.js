@@ -42,6 +42,7 @@ function addListener(node) {
                     toggleDropdown(event.target);
                 });
             }
+            //Corrigé l'eventListener. A mettre sur LI et non pas UL
             if (child.tagName == "UL") {
                 child.addEventListener("click", (event) => {
                     clickedDropdownItem(event.target);
@@ -78,7 +79,13 @@ function typeOfItem(item) {
 
 function searchDropdown(input, items) {
     const regex = new RegExp(input, "gmi");
-    return items.filter((item) => regex.test(item));
+    let filteredItems = [];
+    for(let i = 0; i < items.length; i++){
+        if(regex.test(items[i]) && !filteredItems.includes(items[i])){
+            filteredItems.push(items[i]);
+        }
+    }
+    return filteredItems;
 }
 
 function removeDropdownChildNode(node) {
