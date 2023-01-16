@@ -31,7 +31,6 @@ function searchInput(inputValue, recipes) {
     }
     );
     console.timeEnd();
-    console.log(searchedRecipes);
     return searchedRecipes;
 }
 
