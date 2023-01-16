@@ -29,9 +29,13 @@ function getRecipeWithTags(){
         }
     }
     else if(selectedTags.length > 0){
-        selectedTags.forEach(tag => {
-            displaySearchInput(tag, recipes);
-        });
+        for(let i = 0; i < selectedTags.length; i++){
+            if(i === 0){
+                displaySearchInput(selectedTags[i], recipes);
+                continue;
+            }
+            displaySearchInput(selectedTags[i], searchedRecipes);
+        }
     }
     else{
         searchedRecipes = [];

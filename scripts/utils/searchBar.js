@@ -32,7 +32,6 @@ function searchInput(inputValue, recipes){
 }
 
 function searchInputFromUstensils(inputValue, recipes){
-    console.log(inputValue);
     const regex = new RegExp(`${inputValue}`, "i");
     let filterUstensil = [];
     for(let i = 0; i < recipes.length; i++){
