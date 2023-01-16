@@ -20,9 +20,12 @@ function getRecipeWithTags(){
     const inputValue = document.querySelector('#recipe-form').value;
     if(inputValue.length > 2){
         if(selectedTags.length != 0){
-            selectedTags.forEach(tag => {
-                displaySearchInput(tag, searchedRecipes);
-            });
+            for(let i = 0; i < selectedTags.length; i++){
+                if( i === 0){
+                    displaySearchInput(inputValue, recipes);
+                }
+                displaySearchInput(selectedTags[i], searchedRecipes);
+            }
         }
         else{
             displaySearchInput(inputValue, recipes);
