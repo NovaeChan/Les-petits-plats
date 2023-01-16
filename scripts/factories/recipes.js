@@ -12,7 +12,7 @@ function recipeFactory(data){
         const cardTimeDesc = document.createElement( 'p' );
         const cardIngredientsDescription = document.createElement( 'div' );
         const cardRecipeDesc = document.createElement( 'div' );
-
+        const cardRecipeDescP = document.createElement( 'p' );
         card.classList.add('card');
 
         cardBgImage.classList.add('card-img');
@@ -39,10 +39,12 @@ function recipeFactory(data){
         cardTitle.appendChild(cardRecipeName);
         cardTitle.appendChild(cardTimeBlock);
 
-        cardRecipeDesc.textContent = `${description}`;
+        cardRecipeDescP.textContent = `${description}`;
+        // cardRecipeDesc.textContent = `${description}`;
         if(description.length > 175){
-            cardRecipeDesc.textContent = `${description.slice(0, 175)}...`;
+            cardRecipeDescP.textContent = `${description.slice(0, 175)}...`;
         }
+        cardRecipeDesc.appendChild(cardRecipeDescP);
         cardIngredientsDescription.appendChild(getIngredients(ingredients));
         cardIngredientsDescription.appendChild(cardRecipeDesc);
         

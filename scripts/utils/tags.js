@@ -29,6 +29,11 @@ function getRecipeWithTags(){
             displaySearchInput(inputValue, recipes);
         }
     }
+    else if(selectedTags.length > 0){
+        selectedTags.forEach(tag => {
+            displaySearchInput(tag, recipes);
+        });
+    }
     else{
         searchedRecipes = [];
         displayFilters(recipes);

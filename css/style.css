@@ -41,6 +41,8 @@ main{
     font-family: 'Lato', sans-serif;
 }
 
+
+
 .recipe-form,
 .tags,
 .wrapper-recipe{
@@ -97,6 +99,7 @@ form{
 
 .tags{
     display: none;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1.5rem;
     margin-top: 25px;
@@ -106,7 +109,6 @@ form{
 .tag{
     display: flex;
     align-items: center;
-    /* width: 107px; */
     height: 37px;
     border-radius: 5px;
     justify-content: space-evenly;
@@ -143,7 +145,7 @@ form{
     flex-wrap: nowrap;
     flex-grow: 4;
     gap: 2rem;
-    width: var(--dropdown-size-open);
+    width: 100%;
 }
 
 .filters{
@@ -220,9 +222,17 @@ form{
     list-style-type: none;
     padding-left: 10px;
     padding-bottom : 16px;
-    width: var(--dropdown-size-open);
     max-height: 350px;
     overflow: scroll;
+    width: 100%;
+}
+
+.dropdown-not-clicked{
+    z-index: -1;
+}
+
+.dropdown-clicked{
+    z-index: 1;
 }
 
 .wrapper-dropdown .dropdown-ingredients,
@@ -235,6 +245,10 @@ form{
     padding: 5px 10px 5px 0px;
     padding-left: 10px;
     width: 100%;
+}
+
+.wrapper-dropdown .dropdown-added-tag{
+    display: none;
 }
 
 .wrapper-dropdown .dropdown-hide{
@@ -274,6 +288,8 @@ form{
 .tag-ustensils{
     background-color: var(--utensils-color);
 }
+
+
 
 /* Error message */
 .recipe-error{
@@ -347,6 +363,7 @@ form{
     justify-content: space-around;
     font-size: 12px;
     gap: 25px;
+    height: 80%;
 }
 
 .card-ingredient-recipe div {
@@ -365,4 +382,85 @@ form{
 
 .card-description{
     font-family: 'Roboto', sans-serif;
+}
+
+.card-description p{
+    overflow: hidden;
+    text-overflow: none;
+}
+
+@media screen and (max-width: 1437px){
+    body{
+        padding: 0px 7%;
+    }
+    main{
+        width: 100%;
+    }
+    .recipe-display{
+        justify-content: center;
+        grid-template-columns: min-content auto;
+        /* column-gap: 4.1%; */
+    }
+
+}
+
+@media screen and (max-width: 920px){
+    .recipe-display{
+        grid-template-columns: 1fr;
+        justify-content: center;
+        column-gap: 0;
+        margin-left: 50%;
+        margin-right: 50%;
+    }
+}
+
+@media screen and (max-width: 772px){
+    .wrapper-dropdown-open{
+        width: 86vw;
+    }
+    .dropdown{
+        width: 86vw;
+    }
+}
+    
+@media screen and (max-width: 660px){
+    .dropdowns{
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 440px){
+    .wrapper-dropdown-open .dropdown{
+        grid-template-columns: 1fr 1fr;
+    }
+    .recipe-display{
+        display: flex;
+        flex-direction: column;
+    }
+    .card{
+        width: 86vw;
+    }
+    .card-description{
+        overflow-block: hidden;
+    }
+}
+
+@media screen and (max-width: 408px){
+    header{
+        padding: 20px;
+    }
+    header h1{
+        font-size: 30px;
+    }
+    .dropdowns{
+        flex-direction: column;
+        
+    }
+
+}
+
+@media screen and (max-width: 290px){
+    .wrapper-dropdown-open .dropdown{
+        grid-template-columns: 1fr;
+    }
 }

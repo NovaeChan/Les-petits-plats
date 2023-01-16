@@ -10,6 +10,9 @@ function displayUstensilsFilter(ustensils) {
         const ustensilLI = ustensilModel.getDropDown();
         if (ustensilLI) {
             ustensilLI.dataset.type = "ustensil";
+            if (selectedTags.includes(ustensil)) {
+                ustensilLI.classList.add("dropdown-added-tag");
+            }
             ustensilLI.addEventListener("click", (event) => {
                 selectedTags.push(event.target.textContent);
                 //changer la fonction car ustensiles ne sont pas dans les cards ou aller chercher la card
@@ -52,7 +55,7 @@ function displayInputUstensil(input, ustensils) {
 
 inputUstensil.addEventListener("input", (event) => {
     if (event.currentTarget.value.length > 2) {
-      console.log(filterUstensils);
+        console.log(filterUstensils);
         displayInputUstensil(event.target.value, filterUstensils);
     }
 });

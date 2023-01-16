@@ -1,15 +1,19 @@
 const tags = document.querySelector(".tags");
 
 let selectedTags = [];
-//Chercher tous les éléments du dropdown ou remplir le dropdown petit à petit
-//Faire un filtre
-//Mettre à jour le dropdown
-//Maybe mettre à jour les recettes
 
 //Ajout des ecouteurs d'evenements sur les dropdowns
 function toggleDropdown(target) {
+    const filters = document.querySelectorAll('.filters');
     const parent = target.parentNode;
+    const clickedFilter = parent.parentNode;
     parent.classList.toggle("wrapper-dropdown-open");
+    filters.forEach(filter => {
+        if(filter != clickedFilter){
+            filter.classList.toggle("dropdown-not-clicked");
+        } 
+    })
+    clickedFilter.classList.toggle("dropdown-clicked");
 }
 
 function clickedDropdownItem(target) {
