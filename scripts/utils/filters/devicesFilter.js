@@ -9,13 +9,15 @@ function displayDevicesFilter(devices) {
     const deviceLI = deviceModel.getDropDown();
     if (deviceLI) {
         deviceLI.dataset.type = "device";
+        if(selectedTags.includes(devices)){
+            deviceLI.classList.add('dropdown-added-tag');
+        }
         deviceLI.addEventListener("click", (event) => {
             selectedTags.push(event.target.textContent);
             displaySearchInput(
                 event.target.textContent,
                 searchedRecipes.length > 0 ? searchedRecipes : recipes
             );
-            toggleDropdown(dropdownDevices);
         });
         dropdownDevices.appendChild(deviceLI);
     }

@@ -10,6 +10,9 @@ function displayUstensilsFilter(ustensils) {
         const ustensilLI = ustensilModel.getDropDown();
         if (ustensilLI) {
             ustensilLI.dataset.type = "ustensil";
+            if (selectedTags.includes(ustensil)) {
+                ustensilLI.classList.add("dropdown-added-tag");
+            }
             ustensilLI.addEventListener("click", (event) => {
                 selectedTags.push(event.target.textContent);
                 //changer la fonction car ustensiles ne sont pas dans les cards ou aller chercher la card
@@ -17,7 +20,6 @@ function displayUstensilsFilter(ustensils) {
                     event.target.textContent,
                     searchedRecipes.length > 0 ? searchedRecipes : recipes
                 );
-                toggleDropdown(dropdownUstensils);
             });
             dropdownUstensils.appendChild(ustensilLI);
         }

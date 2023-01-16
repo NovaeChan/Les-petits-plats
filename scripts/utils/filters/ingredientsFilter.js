@@ -5,21 +5,24 @@ const inputIngredient = wrapperIngredient.querySelector(".dropdown-input");
 let filterIngredients = [];
 
 function displayIngredientsFilter(ingredients) {
+  
   ingredients.forEach((ingredient) => {
-    const ingredientModel = dropDownFactory(ingredient, "ingredient");
-    const ingredientLI = ingredientModel.getDropDown();
-    if (ingredientLI) {
-      ingredientLI.dataset.type = "ingredient";
-      ingredientLI.addEventListener("click", (event) => {
-        selectedTags.push(event.target.textContent);
-        displaySearchInput(
-          event.target.textContent,
-          searchedRecipes.length > 0 ? searchedRecipes : recipes
-        );
-        toggleDropdown(dropdownIngredients);
-      });
-      dropdownIngredients.appendChild(ingredientLI);
-    }
+      const ingredientModel = dropDownFactory(ingredient, "ingredient");
+      const ingredientLI = ingredientModel.getDropDown();
+      if (ingredientLI) {
+        ingredientLI.dataset.type = "ingredient";
+        if(selectedTags.includes(ingredient.ingredient)){
+          ingredientLI.classList.add('dropdown-added-tag');
+        }
+        ingredientLI.addEventListener("click", (event) => {
+          selectedTags.push(event.target.textContent);
+          displaySearchInput(
+            event.target.textContent,
+            searchedRecipes.length > 0 ? searchedRecipes : recipes
+          );
+        });
+        dropdownIngredients.appendChild(ingredientLI);
+      }
   });
 }
 

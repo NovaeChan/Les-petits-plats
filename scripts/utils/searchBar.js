@@ -1,8 +1,5 @@
 const searchBar = document.getElementById('recipe-form');
 
-//TODO : Sauvegarder le tableau filtré + les tags
-//Réfléchir à comment actualiser lors d'une suppression de tags
-
 //Function rechercher ingredient, nom de recette, description
 function searchInput(inputValue, recipes){
     console.time();

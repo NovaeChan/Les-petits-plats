@@ -2,6 +2,7 @@ function closeTag(target){
     const parent = target.parentNode;
     const removedTag = parent.querySelector('span').textContent;
     parent.style.display = 'none';
+    
     removeSelectedTag(removedTag);
     getRecipeWithTags();
 }
@@ -15,6 +16,7 @@ function removeSelectedTag(tag){
 
 //Ajouter une vérification pour savoir si une recherche a été effectuée
 function getRecipeWithTags(){
+    console.log(selectedTags);
     const inputValue = document.querySelector('#recipe-form').value;
     if(inputValue.length > 2){
         if(selectedTags.length != 0){
@@ -25,6 +27,11 @@ function getRecipeWithTags(){
         else{
             displaySearchInput(inputValue, recipes);
         }
+    }
+    else if(selectedTags.length > 0){
+        selectedTags.forEach(tag => {
+            displaySearchInput(tag, recipes);
+        });
     }
     else{
         searchedRecipes = [];

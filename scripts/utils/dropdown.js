@@ -1,10 +1,6 @@
 const tags = document.querySelector(".tags");
 
 let selectedTags = [];
-//Chercher tous les éléments du dropdown ou remplir le dropdown petit à petit
-//Faire un filtre
-//Mettre à jour le dropdown
-//Maybe mettre à jour les recettes
 
 //Ajout des ecouteurs d'evenements sur les dropdowns
 function toggleDropdown(target) {
@@ -23,6 +19,7 @@ function clickedDropdownItem(target) {
 
     tag.classList.add("tag");
     tag.classList.add(typeOfItem(target));
+    tag.setAttribute('id', target.textContent);
 
     tag.appendChild(nameTag);
     tag.appendChild(closeImg);
