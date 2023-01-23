@@ -1,32 +1,21 @@
 const searchBar = document.getElementById('recipe-form');
 
-//TODO : Sauvegarder le tableau filtré + les tags
-//Réfléchir à comment actualiser lors d'une suppression de tags
-
 //Function rechercher ingredient, nom de recette, description
 function searchInput(inputValue, recipes) {
     console.time();
-    const regex = new RegExp(`${inputValue}`, "i");
-    //TODO : Faire une fonction equivalent à filter
     searchedRecipes = recipes.filter((recipe) => {
         let matched = false;
-        if (regex.test(recipe.name)) {
+        if(recipe.name.toLowerCase().trim().includes(inputValue.toLowerCase().trim())){
             return true;
         }
-        if (regex.test(recipe.description)) {
+        if(recipe.description.toLowerCase().trim().includes(inputValue.toLowerCase().trim())){
             return true;
         }
-        if(regex.test(recipe.appliance)){
-            return true;
-        }
-        recipe.ingredients.forEach(({ ingredient }) => {
-            if (regex.test(ingredient)) {
+        recipe.ingredients.forEach(({ingredient}) => {
+            if(ingredient.toLowerCase().trim().includes(inputValue.toLowerCase().trim())){
                 matched = true;
             }
         });
-        if(regex.test(recipe.ustensils)){
-            return true;
-        }
         return matched;
     }
     );
@@ -35,13 +24,10 @@ function searchInput(inputValue, recipes) {
 }
 
 function searchInputFromUstensils(inputValue, recipes){
-    const regex = new RegExp(`${inputValue}`, "i");
-    //TODO : Faire une fonction equivalent à filter
-    searchedRecipes = recipes.filter((recipe) => {
-        return regex.test(recipe.ustensils);
+    return searchedRecipes = recipes.filter((recipe) => {
+        return recipe.ustensils.includes(inputValue);
     }
     );
-    return searchedRecipes;
 }
 
 function displaySearchInputFromUstensils(inputValue, recipes){
@@ -59,21 +45,94 @@ function displaySearchInput(inputValue, recipes){
     displayFilters(searchedRecipes);
 }
 
-searchBar.addEventListener('input', (event) => {
+
+searchBar.addEventListener("input", (event) => {
     if (event.currentTarget.value.length >= 3) {
         const searchedItem = event.currentTarget.value.trim().toLowerCase();
-        displaySearchInput(searchedItem, recipes);
+        if(selectedTags.length <= 0){
+            displaySearchInput(searchedItem, recipes);
+        }
+        else{
+            const tagUstensils = document.querySelectorAll('.tag-ustensils');
+            if(tagUstensils.length > 0){
+                let ustensilsTags = [];
+                tagUstensils.forEach((tag) => {
+                    ustensilsTags.push(tag.querySelector('span').innerHTML);
+                })
+                for(let i = 0; i < selectedTags.length; i++){
+                    if(ustensilsTags.includes(selectedTags[i])){
+                        if(i == 0){
+                            displaySearchInputFromUstensils(selectedTags[0], recipes);
+                            continue;
+                        }
+                        displaySearchInputFromUstensils(selectedTags[i], searchedRecipes);
+                        continue;
+                    }
+                    if( i == 0){
+                        displaySearchInput(selectedTags[i], recipes);
+                        continue;
+                    }
+                    displaySearchInput(selectedTags[i], searchedRecipes);
+                }
+                displaySearchInput(searchedItem, searchedRecipes);
+            }
+            else {
+                for(let i = 0; i < selectedTags.length; i++){
+                    if(i === 0 ){
+                        displaySearchInput(selectedTags[i], recipes);
+                        continue;
+                    }
+                    displaySearchInput(selectedTags[i], searchedRecipes);
+                }
+                displaySearchInput(searchedItem, searchedRecipes);
+            }
+        }
     }
 });
 
-searchBar.addEventListener('keyup', (event) => {
-    if(event.key == 'Backspace' || event.key == 'Delete'){
+searchBar.addEventListener("keyup", (event) => {
+    if (event.key == "Backspace" || event.key == "Delete") {
         const searchedItem = event.currentTarget.value.trim().toLowerCase();
         if( searchedItem.length < 3 ){
             searchedRecipes = [];
-            displayRecipes(recipes);
-            displayFilters(recipes);
+            if(selectedTags.length <= 0){
+                displayRecipes(recipes);
+                displayFilters(recipes);
+            }
+            else{
+                const tagUstensils = document.querySelectorAll('.tag-ustensils');
+                if(tagUstensils.length > 0){
+                    let ustensilsTags = [];
+                    tagUstensils.forEach((tag) => {
+                        ustensilsTags.push(tag.querySelector('span').innerHTML);
+                    })
+                    for(let i = 0; i < selectedTags.length; i++){
+                        if(ustensilsTags.includes(selectedTags[i])){
+                            if( i === 0 ){
+                                displaySearchInputFromUstensils(selectedTags[i], recipes);
+                                continue;
+                            }
+                            displaySearchInputFromUstensils(selectedTags[i], searchedRecipes);
+                            continue;
+                        }
+                        if(i === 0 ){
+                            displaySearchInput(selectedTags[i], recipes);
+                            continue;
+                        }
+                        displaySearchInput(selectedTags[i], searchedRecipes);
+                    }
+                }
+                else {
+                    for(let i = 0; i < selectedTags.length; i++){
+                        if(i === 0 ){
+                            displaySearchInput(selectedTags[i], recipes);
+                            continue;
+                        }
+                        displaySearchInput(selectedTags[i], searchedRecipes);
+                    }  
+                }
+            }
         }
     }
-})
+});
 
